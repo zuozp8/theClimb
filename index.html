@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>|The Climb</title>
+    <title>The Climb</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
 
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="/node_modules/zone.js/dist/zone.js"></script>
+    <script src="/node_modules/reflect-metadata/Reflect.js"></script>
 
-    <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
-    <script src="node_modules/@angular/core/bundles/core.umd.js"></script>
-    <script src="node_modules/@angular/common/bundles/common.umd.js"></script>
-    <script src="node_modules/@angular/compiler/bundles/compiler.umd.js"></script>
-    <script src="node_modules/@angular/platform-browser/bundles/platform-browser.umd.js"></script>
-    <script src="node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"></script>
+    <script src="/node_modules/systemjs/dist/system.js"></script>
 
-    <script> window.app = window.app || {}; </script>
-    <script src="app/app-base.component.js"></script>
-    <script src="app/app.module.js"></script>
-    <script src="app/main.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('app').catch(function (err) {
+            console.error(err);
+        });
+    </script>
 </head>
 
 <body>
