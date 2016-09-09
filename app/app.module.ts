@@ -1,10 +1,26 @@
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule} from "@angular/forms";
 import {AppBaseComponent} from "./app-base.component";
+import {ResourcesService} from "./resources.service";
+import {routing} from "./app.routing";
+import {ResearchComponent} from "./research.component";
+import {VillageComponent} from "./village.component";
 
 @NgModule({
-    imports: [BrowserModule],
-    declarations: [AppBaseComponent],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        routing,
+    ],
+    declarations: [
+        AppBaseComponent,
+        VillageComponent,
+        ResearchComponent,
+    ],
+    providers: [
+        ResourcesService
+    ],
     bootstrap: [AppBaseComponent]
 })
 

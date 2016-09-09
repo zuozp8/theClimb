@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "start": "php -S 0.0.0.0:8099",
-    "compile": "tsc"
+    "compile": "tsc",
+    "watch": "tsc -w"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.6",

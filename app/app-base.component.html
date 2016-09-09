@@ -1,1 +1,21 @@
-<h1>My First Angular 2 App {{title}} {{heroes[0].name}}</h1>
+<div class="container">
+    <div class="row">
+        <h3 class="col-sm-3">The climb</h3>
+        <ul class="col-sm-9 list-inline text-xs-right">
+            <li class="list-inline-item">Population: {{population}}</li>
+            <li class="list-inline-item" *ngIf="false">Milk: {{resourcesService.milk}}</li>
+            <li class="list-inline-item">Fat: {{resourcesService.fat}}</li>
+        </ul>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/village" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/research" routerLinkActive="active">Home</a>
+        </li>
+    </ul>
+
+    <router-outlet></router-outlet>
+</div>
