@@ -1,5 +1,10 @@
 .idea
+.sass-cache
 node_modules
+npm-debug.log
+
+style.css
+style.css.map
 
 app/*.js
 app/*.js.map

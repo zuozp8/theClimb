@@ -6,6 +6,7 @@ import {ResourcesService} from "./resources.service";
 import {routing} from "./app.routing";
 import {ResearchComponent} from "./research.component";
 import {VillageComponent} from "./village.component";
+import {ItemComponent} from "./item.component";
 
 @NgModule({
     imports: [
@@ -17,6 +18,7 @@ import {VillageComponent} from "./village.component";
         AppBaseComponent,
         VillageComponent,
         ResearchComponent,
+        ItemComponent,
     ],
     providers: [
         ResourcesService

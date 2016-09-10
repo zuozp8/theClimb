@@ -1,0 +1,12 @@
+<span class="label">{{label}}</span>
+<span class="pull-right">
+            <output>{{value}}</output>
+            <i class="fa fa-angle-double-down fa-border"
+               (click)="opened = !opened;" [class.fa-rotate-180]="opened"></i>
+        </span>
+<div class="clearfix"></div>
+<div class="collapse" [class.in]="opened">
+    <p class="small text-justify">
+        {{description}}
+    </p>
+</div>

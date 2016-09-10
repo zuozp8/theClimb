@@ -1,0 +1,41 @@
+$enable-flex: true;
+@import "node_modules/bootstrap/scss/bootstrap";
+
+$fa-font-path: 'node_modules/font-awesome/fonts';
+@import "node_modules/font-awesome/scss/font-awesome";
+
+body {
+  padding: 2 * $spacer-y 0;
+}
+
+.card > item {
+  display: block;
+  padding: $card-spacer-y $card-spacer-x;
+  border-top: 1px solid $card-border-color;
+  text-align: left;
+  &:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+  }
+  &:last-child {
+    padding-bottom: $card-spacer-x;
+  }
+  > .label::after {
+    content: ':';
+  }
+  > .pull-right > i {
+    transition: .5s;
+  }
+  .collapse {
+    overflow: hidden;
+    &:not(.in) {
+      display: none;
+      max-height: 0;
+    }
+    max-height: 1000px;
+  }
+}
+
+.flex {
+  display: flex;
+}

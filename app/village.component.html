@@ -1,0 +1,43 @@
+<div class="row text-xs-center">
+    <div class="col-sm-4">
+        <div class="card">
+            <h4 class="card-header">Population</h4>
+            <div class="card-block">
+                <h4 class="card-title">Total: {{village.population}}</h4>
+                <h6 class="card-subtitle text-muted">Breeding speed: 3/s</h6>
+                <progress class="progress progress-striped progress-animated" value="10" max="100"></progress>
+            </div>
+            <item [label]="'Unassigned'" [value]="village.freeWorker"
+                  [description]="'Some lazy pussies. Better push them to work, as they have to eat even when they are resting.'"></item>
+
+            <item [label]="'Mining'" [value]="village.mines"
+                  [description]="'Descending deep into the ground to gather precious fat, that can be used as food, building material or currency.'"></item>
+
+            <item [label]="'Researching'" [value]="village.universities"
+                  [description]="'Study hard to deepen the knowledge, develop fat-science and build fat-technologies that enhance quality of life of whole community.'"></item>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="card">
+            <h4 class="card-header">Mines</h4>
+            <div class="card-block text-xs-left">
+                <div class="flex flex-items-xs-middle flex-items-xs-between">
+                    <span>Price: {{minePrice}} fat</span>
+                    <button type="button" class="pull-right btn btn-success"
+                            [disabled]="buildingMineConstraint ? true : null" (click)="buyMine()">Buy
+                    </button>
+                </div>
+                <div class="small text-muted">{{buildingMineConstraint}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="card">
+            <h4 class="card-header">Universities</h4>
+            <div class="card-block">
+            </div>
+        </div>
+    </div>
+</div>

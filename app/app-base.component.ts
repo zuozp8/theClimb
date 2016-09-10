@@ -6,8 +6,6 @@ import {ResourcesService} from "./resources.service";
     templateUrl: '/app/app-base.component.html'
 })
 export class AppBaseComponent {
-    public population: number = 1;
-
     constructor(public resourcesService: ResourcesService) {
     }
 }
