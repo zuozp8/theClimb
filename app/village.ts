@@ -1,6 +1,6 @@
 export class Village {
-    freeWorker: number = 2;
 
+    freeWorker: number = 0;
     mines: number = 0;
     universities: number = 0;
 

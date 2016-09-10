@@ -1,14 +1,14 @@
 import {Component} from "@angular/core";
 import {Village} from "./village";
 import {ResourcesService} from "./resources.service";
+import {VillageService} from "./village.service";
 
 @Component({
     templateUrl: '/app/village.component.html'
 })
 export class VillageComponent {
-    village: Village = new Village();
-
-    constructor(private resourcesService: ResourcesService) {
+    constructor(private resourcesService: ResourcesService,
+                private villageService: VillageService) {
     }
 
     minePrice: number = 50;
@@ -25,6 +25,10 @@ export class VillageComponent {
             return 'Don\'t assign everyone to mining.';
         }
         return null;
+    }
+
+    get village(): Village {
+        return this.villageService.current;
     }
 
     buyMine() {

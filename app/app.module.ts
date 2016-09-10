@@ -7,6 +7,9 @@ import {routing} from "./app.routing";
 import {ResearchComponent} from "./research.component";
 import {VillageComponent} from "./village.component";
 import {ItemComponent} from "./item.component";
+import {TimeTickService} from "./time-tick.service";
+import {VillageService} from "./village.service";
+import {FloorPipe} from "./floor.pipe";
 
 @NgModule({
     imports: [
@@ -19,12 +22,16 @@ import {ItemComponent} from "./item.component";
         VillageComponent,
         ResearchComponent,
         ItemComponent,
+        FloorPipe,
     ],
     providers: [
-        ResourcesService
+        VillageService,
+        ResourcesService,
+        TimeTickService,
     ],
-    bootstrap: [AppBaseComponent]
+    bootstrap: [
+        AppBaseComponent,
+    ]
 })
-
 export class AppModule {
 }
