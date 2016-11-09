@@ -4,8 +4,13 @@
             <h4 class="card-header">Population</h4>
             <div class="card-block">
                 <h4 class="card-title">Total: {{village.population}}</h4>
-                <h6 class="card-subtitle text-muted">Breeding speed: 3/s</h6>
-                <progress class="progress progress-striped progress-animated" value="10" max="100"></progress>
+                <template [ngIf]="breedingService.getProduction()">
+                    <h6 class="card-subtitle text-muted">
+                        Breeding time: {{1 / breedingService.getProduction() | number:'1.0-2'}}s
+                    </h6>
+                    <progress class="progress progress-striped progress-animated" value="{{breedingService.progress}}"
+                              max="1"></progress>
+                </template>
             </div>
             <item [label]="'Unassigned'" [value]="village.freeWorker"
                   [description]="'Some lazy pussies. Better push them to work, as they have to eat even when they are resting.'"></item>

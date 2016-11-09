@@ -46,7 +46,7 @@ function addResearch(id: ResearchId, callback: (research: Research) => void): vo
 
 addResearch(ResearchId.Sex, (research: Research): void => {
     research.name = 'Sex';
-    research.cost = 100;
+    research.cost = 20;
     research.description = 'Important duty and sweet pleasure. Romantic love allowing your village to grow. Basis of any society.';
 });
 

@@ -4,6 +4,7 @@ import {ResourcesService} from "./resources.service";
 import {VillageService} from "./village.service";
 import {ResearchService} from "./research.service";
 import {ResearchId} from "./research";
+import {BreedingService} from "./breeding.service";
 
 @Component({
     templateUrl: '/app/village.component.html'
@@ -11,7 +12,8 @@ import {ResearchId} from "./research";
 export class VillageComponent {
     constructor(private resourcesService: ResourcesService,
                 private researchService: ResearchService,
-                private villageService: VillageService) {
+                private villageService: VillageService,
+                public breedingService: BreedingService) {
     }
 
     minePrice: number = 50;

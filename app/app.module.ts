@@ -11,6 +11,7 @@ import {TimeTickService} from "./time-tick.service";
 import {VillageService} from "./village.service";
 import {FloorPipe} from "./floor.pipe";
 import {ResearchService} from "./research.service";
+import {BreedingService} from "./breeding.service";
 
 @NgModule({
     imports: [
@@ -29,6 +30,7 @@ import {ResearchService} from "./research.service";
         VillageService,
         ResourcesService,
         ResearchService,
+        BreedingService,
         TimeTickService,
     ],
     bootstrap: [
