@@ -3,6 +3,7 @@ import {Village} from "./village";
 import {ResourcesService} from "./resources.service";
 import {VillageService} from "./village.service";
 import {ResearchService} from "./research.service";
+import {ResearchId} from "./research";
 
 @Component({
     templateUrl: '/app/village.component.html'
@@ -24,7 +25,9 @@ export class VillageComponent {
             let missingFat = Math.ceil(this.minePrice - this.resourcesService.fat);
             return `You need ${missingFat} more fat.`;
         }
-        if (this.village.mines && !this.village.universities) {
+        if (!this.villageService.hasAnyUniversity
+            && this.villageService.hasAnyMine
+            && !this.researchService.isDone(ResearchId.Sex)) {
             return 'Don\'t assign everyone to mining.';
         }
         return null;
@@ -38,7 +41,7 @@ export class VillageComponent {
             let missingFat = Math.ceil(this.universityPrice - this.resourcesService.fat);
             return `You need ${missingFat} more fat.`;
         }
-        if (!this.village.mines) { // TODO check all mines
+        if (!this.villageService.hasAnyMine) {
             return 'First food, then science.';
         }
         return null;

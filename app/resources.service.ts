@@ -5,7 +5,7 @@ import {Village} from "./village";
 
 @Injectable()
 export class ResourcesService {
-    fat: number = 100;
+    fat: number = 200;
     milk: number = 0;
 
     constructor(private villageService: VillageService,

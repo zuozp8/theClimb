@@ -13,11 +13,19 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/village" routerLinkActive="active">Village</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/climb" routerLinkActive="active">Climb</a>
+                <li *ngIf="villageService.hasAnyUniversity || villageService.villages.length > 1" class="nav-item">
+                    <a class="nav-link" routerLink="/research" routerLinkActive="active">
+                        Research
+                        <span *ngIf="!researchService.currentResearch" class="tag tag-danger">
+                            No research chosen
+                        </span>
+                        <span *ngIf="researchService.currentResearch" class="tag tag-info">
+                            {{researchService.currentProgress | percent:'1.2-2'}}
+                        </span>
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/research" routerLinkActive="active">Research</a>
+                <li *ngIf="false" class="nav-item">
+                    <a class="nav-link" routerLink="/climb" routerLinkActive="active">Climb</a>
                 </li>
             </ul>
         </div>
