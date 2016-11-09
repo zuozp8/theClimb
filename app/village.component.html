@@ -25,7 +25,8 @@
                 <div class="flex flex-items-xs-middle flex-items-xs-between">
                     <span>Price: {{minePrice}} fat</span>
                     <button type="button" class="pull-right btn btn-success"
-                            [disabled]="buildingMineConstraint ? true : null" (click)="buyMine()">Buy
+                            [disabled]="buildingMineConstraint ? true : null" (click)="buyMine()">
+                        Buy
                     </button>
                 </div>
                 <div class="small text-muted">{{buildingMineConstraint}}</div>
@@ -36,8 +37,16 @@
     <div class="col-sm-4">
         <div class="card">
             <h4 class="card-header">Universities</h4>
-            <div class="card-block">
+            <div class="card-block text-xs-left">
+                <div class="flex flex-items-xs-middle flex-items-xs-between">
+                    <span>Price: {{universityPrice}} fat</span>
+                    <button type="button" class="pull-right btn btn-success"
+                            [disabled]="buildingUniversityConstraint ? true : null" (click)="buyUniversity()">
+                        Buy
+                    </button>
             </div>
+                <div class="small text-muted">{{buildingUniversityConstraint}}</div>
+        </div>
         </div>
     </div>
 </div>

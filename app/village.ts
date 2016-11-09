@@ -12,4 +12,9 @@ export class Village {
         this.freeWorker--;
         this.mines++;
     }
+
+    buildUniversity() {
+        this.freeWorker--;
+        this.universities++;
+    }
 }

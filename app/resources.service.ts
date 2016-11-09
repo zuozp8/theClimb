@@ -17,7 +17,7 @@ export class ResourcesService {
         this.fat += interval * (this.getFatProduction() - this.getFatConsumption());
     };
 
-    private getFatProduction() {
+    private getFatProduction(): number {
         let result = 0;
         for (let village of this.villageService.villages) {
             result += this.getLocalFatProduction(village);
@@ -25,11 +25,11 @@ export class ResourcesService {
         return result;
     }
 
-    private getLocalFatProduction(village: Village) {
+    private getLocalFatProduction(village: Village): number {
         return village.mines;
     }
 
-    private getFatConsumption() {
+    private getFatConsumption(): number {
         let result = 0;
         for (let village of this.villageService.villages) {
             result += this.getLocalFatConsumption(village);
@@ -37,7 +37,7 @@ export class ResourcesService {
         return result;
     }
 
-    private getLocalFatConsumption(village: Village) {
+    private getLocalFatConsumption(village: Village): number {
         return village.population / 5;
     }
 }

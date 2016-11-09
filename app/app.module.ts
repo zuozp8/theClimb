@@ -10,6 +10,7 @@ import {ItemComponent} from "./item.component";
 import {TimeTickService} from "./time-tick.service";
 import {VillageService} from "./village.service";
 import {FloorPipe} from "./floor.pipe";
+import {ResearchService} from "./research.service";
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import {FloorPipe} from "./floor.pipe";
     providers: [
         VillageService,
         ResourcesService,
+        ResearchService,
         TimeTickService,
     ],
     bootstrap: [
