@@ -23,9 +23,9 @@ export class VillageComponent {
         if (!this.village.freeWorker) {
             return 'You dont have any unemployed villagers to work in new mine.';
         }
-        if (this.resourcesService.fat < this.minePrice) {
-            let missingFat = Math.ceil(this.minePrice - this.resourcesService.fat);
-            return `You need ${missingFat} more fat.`;
+        if (this.resourcesService.essence < this.minePrice) {
+            let missingEssence = Math.ceil(this.minePrice - this.resourcesService.essence);
+            return `You need ${missingEssence} more essence.`;
         }
         if (!this.villageService.hasAnyUniversity
             && this.villageService.hasAnyMine
@@ -39,9 +39,9 @@ export class VillageComponent {
         if (!this.village.freeWorker) {
             return 'You dont have any unemployed villagers to work in new university.';
         }
-        if (this.resourcesService.fat < this.universityPrice) {
-            let missingFat = Math.ceil(this.universityPrice - this.resourcesService.fat);
-            return `You need ${missingFat} more fat.`;
+        if (this.resourcesService.essence < this.universityPrice) {
+            let missingEssence = Math.ceil(this.universityPrice - this.resourcesService.essence);
+            return `You need ${missingEssence} more essence.`;
         }
         if (!this.villageService.hasAnyMine) {
             return 'First food, then science.';
@@ -55,11 +55,11 @@ export class VillageComponent {
 
     buyMine() {
         this.village.buildMine();
-        this.resourcesService.fat -= this.minePrice;
+        this.resourcesService.essence -= this.minePrice;
     }
 
     buyUniversity() {
         this.village.buildUniversity();
-        this.resourcesService.fat -= this.universityPrice;
+        this.resourcesService.essence -= this.universityPrice;
     }
 }

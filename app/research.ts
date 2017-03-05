@@ -53,7 +53,7 @@ addResearch(ResearchId.Sex, (research: Research): void => {
 addResearch(ResearchId.SoilExam, (research: Research): void => {
     research.name = 'Soil Exam';
     research.cost = 200;
-    research.description = 'The very soil that provides us fat can be analyzed. Finding better places for mines will make them 2× more efficient.';
+    research.description = 'The very soil that provides us essence can be analyzed. Finding better places for mines will make them 2× more efficient.';
     research.dependencies.push(ResearchId.Sex);
 });
 

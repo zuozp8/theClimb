@@ -16,10 +16,10 @@
                   [description]="'Some lazy pussies. Better push them to work, as they have to eat even when they are resting.'"></item>
 
             <item [label]="'Mining'" [value]="village.mines"
-                  [description]="'Descending deep into the ground to gather precious fat, that can be used as food, building material or currency.'"></item>
+                  [description]="'Descending deep into the ground to gather precious essence, that can be used as food, building material or currency.'"></item>
 
             <item [label]="'Researching'" [value]="village.universities"
-                  [description]="'Study hard to deepen the knowledge, develop fat-science and build fat-technologies that enhance quality of life of whole community.'"></item>
+                  [description]="'Study hard to deepen the knowledge, develop mountain-science and build essence-technologies that enhance quality of life of whole community.'"></item>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
             <h4 class="card-header">Mines</h4>
             <div class="card-block text-xs-left">
                 <div class="flex flex-items-xs-middle flex-items-xs-between">
-                    <span>Price: {{minePrice}} fat</span>
+                    <span>Price: {{minePrice}} essence</span>
                     <button type="button" class="pull-right btn btn-success"
                             [disabled]="buildingMineConstraint ? true : null" (click)="buyMine()">
                         Buy
@@ -44,7 +44,7 @@
             <h4 class="card-header">Universities</h4>
             <div class="card-block text-xs-left">
                 <div class="flex flex-items-xs-middle flex-items-xs-between">
-                    <span>Price: {{universityPrice}} fat</span>
+                    <span>Price: {{universityPrice}} essence</span>
                     <button type="button" class="pull-right btn btn-success"
                             [disabled]="buildingUniversityConstraint ? true : null" (click)="buyUniversity()">
                         Buy

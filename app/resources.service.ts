@@ -5,7 +5,7 @@ import {Village} from "./village";
 
 @Injectable()
 export class ResourcesService {
-    fat: number = 100;
+    essence: number = 100;
     milk: number = 0;
 
     constructor(private villageService: VillageService,
@@ -14,30 +14,30 @@ export class ResourcesService {
     }
 
     private onTick = (interval: number): void => {
-        this.fat += interval * (this.getFatProduction() - this.getFatConsumption());
+        this.essence += interval * (this.getEssenceProduction() - this.getEssenceConsumption());
     };
 
-    private getFatProduction(): number {
+    private getEssenceProduction(): number {
         let result = 0;
         for (let village of this.villageService.villages) {
-            result += this.getLocalFatProduction(village);
+            result += this.getLocalEssenceProduction(village);
         }
         return result;
     }
 
-    private getLocalFatProduction(village: Village): number {
+    private getLocalEssenceProduction(village: Village): number {
         return village.mines;
     }
 
-    private getFatConsumption(): number {
+    private getEssenceConsumption(): number {
         let result = 0;
         for (let village of this.villageService.villages) {
-            result += this.getLocalFatConsumption(village);
+            result += this.getLocalEssenceConsumption(village);
         }
         return result;
     }
 
-    private getLocalFatConsumption(village: Village): number {
+    private getLocalEssenceConsumption(village: Village): number {
         return village.population / 5;
     }
 }
