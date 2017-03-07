@@ -12,6 +12,8 @@ import {VillageService} from "./village.service";
 import {FloorPipe} from "./floor.pipe";
 import {ResearchService} from "./research.service";
 import {BreedingService} from "./breeding.service";
+import {SaveService} from "./save.service";
+import {SaveHintComponent} from "./save-hint.component";
 
 @NgModule({
     imports: [
@@ -25,6 +27,7 @@ import {BreedingService} from "./breeding.service";
         ResearchComponent,
         ItemComponent,
         FloorPipe,
+        SaveHintComponent,
     ],
     providers: [
         VillageService,
@@ -32,6 +35,7 @@ import {BreedingService} from "./breeding.service";
         ResearchService,
         BreedingService,
         TimeTickService,
+        SaveService,
     ],
     bootstrap: [
         AppBaseComponent,

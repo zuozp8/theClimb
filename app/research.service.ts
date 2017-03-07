@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {VillageService} from "./village.service";
 import {TimeTickService} from "./time-tick.service";
 import {Village} from "./village";
-import {Research, ResearchId, allResearches} from "./research";
+import {allResearches, Research, ResearchId} from "./research";
 
 @Injectable()
 export class ResearchService {
@@ -27,7 +27,7 @@ export class ResearchService {
     }
 
     isDone(id: ResearchId): boolean {
-        return allResearches.get(id).done;
+        return allResearches.get(id).isDone;
     }
 
     private onTick = (interval: number): void => {
@@ -36,7 +36,7 @@ export class ResearchService {
         }
         this.currentProgress += interval * this.getResearchProduction() / this.currentResearch.cost;
         if (this.currentProgress > 1) {
-            this.currentResearch.done = true;
+            this.currentResearch.isDone = true;
             this.currentProgress = 0;
             this.currentResearchId = null;
         }

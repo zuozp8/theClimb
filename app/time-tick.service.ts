@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class TimeTickService {
     interval: number = 0.05;
-    active: boolean = true;
+    active: boolean = false;
     time: number = 0;
 
     subscribers: Array<(interval: number) => void> = [];

@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {ResearchService} from "./research.service";
-import {Research, allResearches} from "./research";
+import {allResearches, Research} from "./research";
 
 @Component({
     templateUrl: '/app/research.component.html'
@@ -12,14 +12,14 @@ export class ResearchComponent {
     get availableResearch(): Research[] {
         let result = [];
         allResearches.forEach((value: Research): void => {
-            if (value.done) {
+            if (value.isDone) {
                 return;
             }
             if (value.id === this.researchService.currentResearchId) {
                 return;
             }
             for (let dependencyId of value.dependencies) {
-                if (!allResearches.get(dependencyId).done) {
+                if (!allResearches.get(dependencyId).isDone) {
                     return;
                 }
             }
@@ -31,7 +31,7 @@ export class ResearchComponent {
     get finishedResearch(): Research[] {
         let result = [];
         allResearches.forEach((value: Research): void => {
-            if (value.done) {
+            if (value.isDone) {
                 result.push(value);
             }
         });

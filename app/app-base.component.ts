@@ -4,6 +4,7 @@ import {TimeTickService} from "./time-tick.service";
 import {ResearchService} from "./research.service";
 import {VillageService} from "./village.service";
 import {BreedingService} from "./breeding.service";
+import {SaveService} from "./save.service";
 
 @Component({
     selector: 'app-base',
@@ -13,8 +14,12 @@ export class AppBaseComponent {
     constructor(public resourcesService: ResourcesService,
                 public researchService: ResearchService,
                 public villageService: VillageService,
-                breedingService: BreedingService, // Just initialize
-                timeTickService: TimeTickService // Just initialize
+                public saveService: SaveService,
+                // Just initialize
+                breedingService: BreedingService,
+                timeTickService: TimeTickService
     ) {
+        saveService.load();
+        timeTickService.active = true;
     }
 }

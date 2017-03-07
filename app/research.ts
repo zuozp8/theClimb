@@ -25,7 +25,7 @@ export class Research {
     public dependencies: ResearchId[] = [];
     // TODO add non-research dependencies
 
-    public done: boolean = false;
+    public isDone: boolean = false;
 
     public name: string;
     public cost: number;
@@ -35,6 +35,7 @@ export class Research {
     };
 }
 
+//todo make service
 export let allResearches: Map<ResearchId, Research> = new Map<ResearchId, Research>();
 
 function addResearch(id: ResearchId, callback: (research: Research) => void): void {

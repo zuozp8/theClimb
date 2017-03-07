@@ -39,3 +39,45 @@ body {
 .flex {
   display: flex;
 }
+
+save-hint {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  > span {
+    white-space: nowrap;
+    padding: ($card-spacer-y/2) $card-spacer-x $card-spacer-y;
+    border: 1px solid $card-border-color;
+    border-top-width: 0;
+    background: $card-cap-bg;
+    @include border-radius(0 0 $card-border-radius-inner $card-border-radius-inner);
+
+    display: none;
+    opacity: 0;
+
+    &.in {
+      display: block;
+      animation-name: example;
+      animation-duration: 2s;
+    }
+  }
+}
+
+@keyframes example {
+  0% {
+    opacity: 1;
+    transform: translate(0, -100%);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(0, 0%)
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

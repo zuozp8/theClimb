@@ -5,6 +5,16 @@ import {Village} from "./village";
 export class VillageService {
     public villages: Village[];
 
+    set villagesRaw(rawVillages: Object[]) {
+        this.villages = rawVillages.map((rawVillage: Object): Village => {
+            let village = new Village();
+            for (let prop in rawVillage) {
+                village[prop] = rawVillage[prop];
+            }
+            return village;
+        });
+    };
+
     constructor() {
         let village = new Village();
         village.freeWorker = 2;
