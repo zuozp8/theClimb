@@ -1,11 +1,10 @@
-$enable-flex: true;
 @import "node_modules/bootstrap/scss/bootstrap";
 
 $fa-font-path: 'node_modules/font-awesome/fonts';
 @import "node_modules/font-awesome/scss/font-awesome";
 
 body {
-  padding: 2 * $spacer-y 0;
+  padding: 2 * $spacer 0;
 }
 
 .card > item {
@@ -23,7 +22,7 @@ body {
   > .label::after {
     content: ':';
   }
-  > .pull-right > i {
+  > .float-right > i {
     transition: .5s;
   }
   .collapse {
@@ -36,8 +35,8 @@ body {
   }
 }
 
-.flex {
-  display: flex;
+.flex-item-expandable {
+  flex: 1 0 auto;
 }
 
 save-hint {

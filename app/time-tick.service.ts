@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
+import {Settings} from "./settings";
 
 @Injectable()
 export class TimeTickService {
-    interval: number = 0.05;
     active: boolean = false;
     time: number = 0;
 
@@ -10,17 +10,17 @@ export class TimeTickService {
 
     private intervalId: number;
 
-    constructor() {
+    constructor(private settings: Settings) {
         const self = this;
         this.intervalId = setInterval(() => {
             if (!self.active) {
                 return;
             }
-            self.time += this.interval;
+            self.time += this.settings.tickInterval;
 
             for (let subscriber of self.subscribers) {
-                subscriber(self.interval);
+                subscriber(self.settings.tickInterval);
             }
-        }, 1000 * self.interval);
+        }, 1000 * self.settings.tickInterval);
     }
 }

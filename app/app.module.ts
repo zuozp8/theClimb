@@ -14,6 +14,8 @@ import {ResearchService} from "./research.service";
 import {BreedingService} from "./breeding.service";
 import {SaveService} from "./save.service";
 import {SaveHintComponent} from "./save-hint.component";
+import {SettingsComponent} from "./settings.component";
+import {Settings} from "./settings";
 
 @NgModule({
     imports: [
@@ -28,6 +30,7 @@ import {SaveHintComponent} from "./save-hint.component";
         ItemComponent,
         FloorPipe,
         SaveHintComponent,
+        SettingsComponent,
     ],
     providers: [
         VillageService,
@@ -36,6 +39,7 @@ import {SaveHintComponent} from "./save-hint.component";
         BreedingService,
         TimeTickService,
         SaveService,
+        Settings,
     ],
     bootstrap: [
         AppBaseComponent,

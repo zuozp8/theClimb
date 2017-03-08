@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <h3 class="col-sm-3">The climb</h3>
-        <ul class="col-sm-9 list-inline text-xs-right">
+        <ul class="col-sm-9 list-inline text-right">
             <li class="list-inline-item" *ngIf="false">Milk: {{resourcesService.milk | floor}}</li>
             <li class="list-inline-item">Essence: {{resourcesService.essence | floor}}</li>
         </ul>
@@ -16,7 +16,7 @@
                 <li *ngIf="villageService.hasAnyUniversity || villageService.villages.length > 1" class="nav-item">
                     <a class="nav-link" routerLink="/research" routerLinkActive="active">
                         Research
-                        <span *ngIf="!researchService.currentResearch" class="tag tag-danger">
+                        <span *ngIf="!researchService.currentResearch" class="badge badge-danger">
                             No research chosen
                         </span>
                         <span *ngIf="researchService.currentResearch" class="tag tag-info">
@@ -26,6 +26,10 @@
                 </li>
                 <li *ngIf="false" class="nav-item">
                     <a class="nav-link" routerLink="/climb" routerLinkActive="active">Climb</a>
+                </li>
+                <li class="flex-item-expandable"></li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/settings" routerLinkActive="active">&#9881;</a>
                 </li>
             </ul>
         </div>

@@ -1,7 +1,8 @@
 import {ModuleWithProviders} from "@angular/core";
-import {Routes, RouterModule} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {VillageComponent} from "./village.component";
 import {ResearchComponent} from "./research.component";
+import {SettingsComponent} from "./settings.component";
 
 const appRoutes: Routes = [
     {
@@ -16,7 +17,11 @@ const appRoutes: Routes = [
     {
         path: 'research',
         component: ResearchComponent,
-    }
+    },
+    {
+        path: 'settings',
+        component: SettingsComponent,
+    },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

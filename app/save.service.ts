@@ -6,6 +6,7 @@ import {BreedingService} from "./breeding.service";
 import {TimeTickService} from "./time-tick.service";
 import {allResearches, Research, ResearchId} from "./research";
 import {Subject} from "rxjs/Subject";
+import {Settings} from "./settings";
 
 @Injectable()
 export class SaveService {
@@ -16,9 +17,10 @@ export class SaveService {
                 private researchService: ResearchService,
                 private villageService: VillageService,
                 private breedingService: BreedingService,
-                private timeTickService: TimeTickService) {
+                private timeTickService: TimeTickService,
+                private settings: Settings) {
         timeTickService.subscribers.push((interval: number): void => {
-            if (timeTickService.time % 50 < interval) {
+            if (timeTickService.time % this.settings.autoSaveInterval < interval) {
                 this.save();
             }
         });

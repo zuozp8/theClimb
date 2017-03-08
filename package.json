@@ -18,7 +18,7 @@
     "@angular/platform-browser-dynamic": "2.0.0-rc.6",
     "@angular/router": "3.0.0-rc.2",
     "angular2-in-memory-web-api": "0.0.18",
-    "bootstrap": "github:twbs/bootstrap#v4-dev",
+    "bootstrap": "github:twbs/bootstrap#v4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "font-awesome": "^4.6.3",
     "reflect-metadata": "^0.1.3",

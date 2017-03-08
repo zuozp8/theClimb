@@ -1,4 +1,4 @@
-<div class="row text-xs-center">
+<div class="row text-center">
     <div class="col-sm-4">
         <div class="card">
             <h4 class="card-header">Population</h4>
@@ -8,8 +8,11 @@
                     <h6 class="card-subtitle text-muted">
                         Breeding time: {{1 / breedingService.getProduction() | number:'1.0-2'}}s
                     </h6>
-                    <progress class="progress progress-striped progress-animated" value="{{breedingService.progress}}"
-                              max="1"></progress>
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                             [ngStyle]="{width: breedingService.progress | percent:'1.0-1'}"></div>
+                    </div>
                 </template>
             </div>
             <item [label]="'Unassigned'" [value]="village.freeWorker"
@@ -26,10 +29,10 @@
     <div class="col-sm-4">
         <div class="card">
             <h4 class="card-header">Mines</h4>
-            <div class="card-block text-xs-left">
-                <div class="flex flex-items-xs-middle flex-items-xs-between">
+            <div class="card-block text-left">
+                <div class="d-flex align-items-center justify-content-between">
                     <span>Price: {{minePrice}} essence</span>
-                    <button type="button" class="pull-right btn btn-success"
+                    <button type="button" class="btn btn-success"
                             [disabled]="buildingMineConstraint ? true : null" (click)="buyMine()">
                         Buy
                     </button>
@@ -42,10 +45,10 @@
     <div class="col-sm-4">
         <div class="card">
             <h4 class="card-header">Universities</h4>
-            <div class="card-block text-xs-left">
-                <div class="flex flex-items-xs-middle flex-items-xs-between">
+            <div class="card-block text-left">
+                <div class="d-flex align-items-center justify-content-between">
                     <span>Price: {{universityPrice}} essence</span>
-                    <button type="button" class="pull-right btn btn-success"
+                    <button type="button" class="btn btn-success"
                             [disabled]="buildingUniversityConstraint ? true : null" (click)="buyUniversity()">
                         Buy
                     </button>

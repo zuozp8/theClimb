@@ -2,8 +2,10 @@
     <div class="card">
         <div class="card-block">
             <h4 class="card-title">{{researchService.currentResearch.name}}</h4>
-            <progress class="progress progress-striped progress-animated"
-                      value="{{researchService.currentProgress}}" max="1"></progress>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                     style="width: {{researchService.currentProgress | percent:'1.0-1'}}"></div>
+            </div>
             <h6 class="card-subtitle text-muted">Research speed: {{researchService.getResearchProduction()}}/s</h6>
             <p class="card-text">{{researchService.currentResearch.description}}</p>
             <p class="card-text">
@@ -11,7 +13,7 @@
             </p>
         </div>
 
-        <div class="card-footer text-xs-center">Current research</div>
+        <div class="card-footer text-center">Current research</div>
     </div>
 </div>
 
@@ -22,13 +24,15 @@
             <div class="card-block">
                 <h4 class="card-title">{{research.name}}</h4>
                 <p class="card-text">{{research.description}}</p>
-                <button type="button" class="pull-right btn btn-success"
-                        (click)="researchService.startResearch(research.id)">
-                    {{researchService.currentResearch ? 'Replace' : 'Start'}} research
-                </button>
-                <p class="card-text">
+
+                <div class="d-flex align-items-center justify-content-between">
                     <small class="text-muted">Complexity: {{research.cost}}</small>
-                </p>
+
+                    <button type="button" class="btn btn-success"
+                            (click)="researchService.startResearch(research.id)">
+                        {{researchService.currentResearch ? 'Replace' : 'Start'}} research
+                    </button>
+                </div>
             </div>
         </div>
     </div>
