@@ -1,21 +1,22 @@
 import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
 import {AppBaseComponent} from "./app-base.component";
-import {ResourcesService} from "./resources.service";
 import {routing} from "./app.routing";
-import {ResearchComponent} from "./research.component";
-import {VillageComponent} from "./village.component";
-import {ItemComponent} from "./item.component";
-import {TimeTickService} from "./time-tick.service";
-import {VillageService} from "./village.service";
-import {FloorPipe} from "./floor.pipe";
-import {ResearchService} from "./research.service";
 import {BreedingService} from "./breeding.service";
+import {FloorPipe} from "./floor.pipe";
+import {ItemComponent} from "./item.component";
+import {MessagesService} from "./messages.service";
+import {ResearchComponent} from "./research.component";
+import {ResearchService} from "./research.service";
+import {ResourcesService} from "./resources.service";
 import {SaveService} from "./save.service";
-import {SaveHintComponent} from "./save-hint.component";
-import {SettingsComponent} from "./settings.component";
 import {Settings} from "./settings";
+import {SettingsComponent} from "./settings.component";
+import {TimeTickService} from "./time-tick.service";
+import {TopMessageComponent} from "./top-message.component";
+import {VillageComponent} from "./village.component";
+import {VillageService} from "./village.service";
 
 @NgModule({
     imports: [
@@ -29,17 +30,18 @@ import {Settings} from "./settings";
         ResearchComponent,
         ItemComponent,
         FloorPipe,
-        SaveHintComponent,
+        TopMessageComponent,
         SettingsComponent,
     ],
     providers: [
-        VillageService,
-        ResourcesService,
-        ResearchService,
         BreedingService,
-        TimeTickService,
+        MessagesService,
+        ResearchService,
+        ResourcesService,
         SaveService,
         Settings,
+        TimeTickService,
+        VillageService,
     ],
     bootstrap: [
         AppBaseComponent,

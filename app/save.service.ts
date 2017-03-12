@@ -1,23 +1,22 @@
 import {Injectable} from "@angular/core";
-import {ResourcesService} from "./resources.service";
-import {ResearchService} from "./research.service";
-import {VillageService} from "./village.service";
 import {BreedingService} from "./breeding.service";
-import {TimeTickService} from "./time-tick.service";
+import {MessagesService} from "./messages.service";
 import {allResearches, Research, ResearchId} from "./research";
-import {Subject} from "rxjs/Subject";
+import {ResearchService} from "./research.service";
+import {ResourcesService} from "./resources.service";
 import {Settings} from "./settings";
+import {TimeTickService} from "./time-tick.service";
+import {VillageService} from "./village.service";
 
 @Injectable()
 export class SaveService {
-
-    public saved = new Subject<void>();
 
     constructor(private resourcesService: ResourcesService,
                 private researchService: ResearchService,
                 private villageService: VillageService,
                 private breedingService: BreedingService,
                 private timeTickService: TimeTickService,
+                private messageService: MessagesService,
                 private settings: Settings) {
         timeTickService.subscribers.push((interval: number): void => {
             if (timeTickService.time % this.settings.autoSaveInterval < interval) {
@@ -28,7 +27,7 @@ export class SaveService {
 
     public save(): void {
         localStorage.setItem('saveData', this.getStateString());
-        this.saved.next();
+        this.messageService.topMessage.next(['Saved', null]);
     }
 
     public load(): void {

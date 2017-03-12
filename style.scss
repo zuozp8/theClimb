@@ -39,41 +39,42 @@ body {
   flex: 1 0 auto;
 }
 
-save-hint {
+top-message {
   position: fixed;
-  top: 0;
+  top: -$card-spacer-y / 2;
   left: 50%;
   transform: translate(-50%, 0);
+  height: 0;
 
-  > span {
+  > div {
     white-space: nowrap;
-    padding: ($card-spacer-y/2) $card-spacer-x $card-spacer-y;
+    padding: $card-spacer-y $card-spacer-x;
     border: 1px solid $card-border-color;
-    border-top-width: 0;
     background: $card-cap-bg;
-    @include border-radius(0 0 $card-border-radius-inner $card-border-radius-inner);
+    @include border-radius($card-border-radius-inner);
+    margin-bottom: $spacer / 2;
 
-    display: none;
-    opacity: 0;
+    animation-name: slide-down;
+    animation-duration: 1s;
 
-    &.in {
-      display: block;
-      animation-name: example;
+    &.out {
+      animation-name: fade-out;
       animation-duration: 2s;
     }
   }
 }
 
-@keyframes example {
+@keyframes slide-down {
   0% {
-    opacity: 1;
-    transform: translate(0, -100%);
+    margin-top: -200%;
   }
-  20% {
-    opacity: 1;
-    transform: translate(0, 0%)
+  100% {
+    margin-top: 0%;
   }
-  40% {
+}
+
+@keyframes fade-out {
+  0% {
     opacity: 1;
   }
   100% {

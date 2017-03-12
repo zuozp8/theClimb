@@ -2,7 +2,7 @@
   "name": "theClimb",
   "version": "0.0.1",
   "scripts": {
-    "start": "http-server -p 8099",
+    "start": "http-server -p 8099 -c-1 -d false",
     "compileTS": "tsc",
     "watchTS": "tsc -w",
     "compileSCSS": "scss -l style.scss:style.css",
