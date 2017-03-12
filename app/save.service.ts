@@ -26,12 +26,12 @@ export class SaveService {
         });
     }
 
-    public save() {
+    public save(): void {
         localStorage.setItem('saveData', this.getStateString());
         this.saved.next();
     }
 
-    public load() {
+    public load(): void {
         let state: string = localStorage.getItem('saveData');
         if (state) {
             this.applyStateString(state);
@@ -55,7 +55,7 @@ export class SaveService {
         ]);
     }
 
-    private applyStateString(state: string) {
+    private applyStateString(state: string): void {
         let stateArray = JSON.parse(state);
         let version = stateArray.shift();
         if (version != this.version) {
@@ -82,13 +82,14 @@ export class SaveService {
         console.log('loaded');
     }
 
-    public replaceSave(state?: string) {
-        if (state) {
-            localStorage.setItem('saveData', state);
-        } else {
-            localStorage.removeItem('saveData');
-        }
+    public replaceSave(state: string): void {
+        localStorage.setItem('saveData', state);
         this.load();
+    }
+
+    public resetSave(): void {
+        localStorage.removeItem('saveData');
+        location.reload();
     }
 
     private getFinishedResearchIds(): ResearchId[] {

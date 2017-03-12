@@ -3,7 +3,7 @@ import {Settings} from "./settings";
 
 @Injectable()
 export class TimeTickService {
-    active: boolean = false;
+    pauseDepth: number = 1; // Game is unpaused after load
     time: number = 0;
 
     subscribers: Array<(interval: number) => void> = [];
@@ -22,5 +22,17 @@ export class TimeTickService {
                 subscriber(self.settings.tickInterval);
             }
         }, 1000 * self.settings.tickInterval);
+    }
+
+    public pause(): void {
+        this.pauseDepth++;
+    }
+
+    public unpause(): void {
+        this.pauseDepth--;
+    }
+
+    public get active(): boolean {
+        return this.pauseDepth == 0;
     }
 }

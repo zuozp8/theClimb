@@ -1,27 +1,43 @@
 <div class="form-group row">
-    <div class="col-sm-3 col-form-label">
+    <div class="col-sm-3 col-md-2 col-form-label">
         Game tick:
     </div>
-    <div class="col-sm-9">
-        <div class="form-check form-check-inline">
+    <div class="col-sm-9 col-md-10">
+        <div class="form-check form-check-inline"  *ngFor="let option of availableTickIntervals">
             <label class="form-check-label">
-                <input class="form-check-input" type="radio" id="inlineCheckbox1" value="option1"> 1
+                <input class="form-check-input" [(ngModel)]="settings.tickInterval" type="radio" [value]="option">
+                {{option}} s ({{1 / option}} Hz)
             </label>
         </div>
-        <div class="form-check form-check-inline">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" id="inlineCheckbox2" value="option2"> 2
-            </label>
+        <div class="small form-text text-muted">
+            If your browser seems to lag then it's worth increasing the tick interval,
+            so that it can perform computations less often (this will result in less accurate simulation).
         </div>
-        <div class="form-check form-check-inline disabled">
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-3 col-md-2 col-form-label">
+        Save interval:
+    </div>
+    <div class="col-sm-9 col-md-10">
+        <div class="form-check form-check-inline"  *ngFor="let option of availableSaveIntervals">
             <label class="form-check-label">
-                <input class="form-check-input" type="radio" id="inlineCheckbox3" value="option3" disabled> 3
+                <input class="form-check-input" [(ngModel)]="settings.autoSaveInterval" type="radio" [value]="option">
+                {{option}} s
             </label>
         </div>
 
         <div class="small form-text text-muted">
-            If your browser seems to lag then it's worth increasing the tick interval,
-            so that it can perform computations less often (this will result in less accurate simulation).
+            Your progess is automatically saved, so that you can resume your play when you get back.
+        </div>
+        <div class="form-text">
+            <button class="btn btn-secondary btn-sm" (click)="saveService.save()">Save game</button>
+            <button class="btn btn-danger btn-sm" (click)="saveService.resetSave()">Reset game</button>
+        </div>
+        <div class="form-text">
+            <button class="btn btn-secondary btn-sm" (click)="copySave()">Copy save data</button>
+            <button class="btn btn-secondary btn-sm" (click)="loadSave()">Load save data</button>
         </div>
     </div>
 </div>

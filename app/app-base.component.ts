@@ -20,6 +20,6 @@ export class AppBaseComponent {
                 timeTickService: TimeTickService
     ) {
         saveService.load();
-        timeTickService.active = true;
+        timeTickService.unpause();
     }
 }

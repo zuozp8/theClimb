@@ -19,7 +19,7 @@
                         <span *ngIf="!researchService.currentResearch" class="badge badge-danger">
                             No research chosen
                         </span>
-                        <span *ngIf="researchService.currentResearch" class="tag tag-info">
+                        <span *ngIf="researchService.currentResearch" class="badge badge-info">
                             {{researchService.currentProgress | percent:'1.2-2'}}
                         </span>
                     </a>
