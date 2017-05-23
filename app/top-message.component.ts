@@ -3,34 +3,32 @@ import {Subject} from "rxjs";
 import {MessagesService} from "./messages.service";
 
 @Component({
-    selector: 'top-message',
+    selector: 'top-messagees',
     template: `
-        <div *ngFor="let message of messages" [ngClass]="{out: message.fadingOut}">
+        <div *ngFor="let message of messages">
             {{message.message}}
         </div>
     `,
-    //[ngClass]="{'in': saveHintVisible}"
 })
-export class TopMessageComponent implements OnInit {
-    public messages: {
-        message: string,
-        fadingOut: boolean
-    }[] = [];
+export class TopMessagesComponent implements OnInit {
+    public messages: TopMessage[] = [];
 
     private element: HTMLElement;
 
     constructor(private messagesService: MessagesService,
                 ele: ElementRef) {
         this.element = ele.nativeElement;
-        window['foo'] = (): void => { //TODO remove
-            this.messagesService.topMessage.next(['foo', null]);
+        window['foo'] = (text): void => { //TODO remove
+            this.messagesService.topMessage.next([text || 'foo', null]);
         };
     }
 
     ngOnInit(): void {
         this.messagesService.topMessage.subscribe(([message, hideObservable]: [string, Subject<void>]) => {
-            let messageObject = {message: message, fadingOut: false};
-            this.messages.push(messageObject);
+            let messageObject = new TopMessage;
+            messageObject.message = message;
+            messageObject.fadingOut = false;
+            this.messages.unshift(messageObject);
 
             let hideFunction = () => {
                 messageObject.fadingOut = true;
@@ -42,8 +40,13 @@ export class TopMessageComponent implements OnInit {
             if (hideObservable) {
                 hideObservable.subscribe(hideFunction);
             } else {
-                setTimeout(hideFunction, 1000);
+                //setTimeout(hideFunction, 10000);TODO
             }
         });
     }
+}
+
+class TopMessage {
+    public message: string;
+    public fadingOut: boolean;
 }

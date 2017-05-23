@@ -14,7 +14,7 @@ import {SaveService} from "./save.service";
 import {Settings} from "./settings";
 import {SettingsComponent} from "./settings.component";
 import {TimeTickService} from "./time-tick.service";
-import {TopMessageComponent} from "./top-message.component";
+import {TopMessagesComponent} from "./top-message.component";
 import {VillageComponent} from "./village.component";
 import {VillageService} from "./village.service";
 
@@ -30,7 +30,7 @@ import {VillageService} from "./village.service";
         ResearchComponent,
         ItemComponent,
         FloorPipe,
-        TopMessageComponent,
+        TopMessagesComponent,
         SettingsComponent,
     ],
     providers: [
