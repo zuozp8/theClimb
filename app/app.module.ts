@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppBaseComponent} from "./app-base.component";
 import {routing} from "./app.routing";
 import {BreedingService} from "./breeding.service";
@@ -20,6 +21,7 @@ import {VillageService} from "./village.service";
 
 @NgModule({
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
         routing,
