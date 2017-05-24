@@ -56,8 +56,6 @@ app-base > .container {
 top-messagees {
   position: fixed;
   top: -$card-spacer-y / 2;
-  left: 50%;
-  //transform: translate(-50%, 0);
   height: 0;
 
   > div {
@@ -69,6 +67,9 @@ top-messagees {
     @include border-radius($card-border-radius-inner);
 
     display: inline-block;
+    margin-right: 10px;
+    overflow: hidden;
+    //width: 200px;
     //position: absolute;
     //top: -100px;
   }
