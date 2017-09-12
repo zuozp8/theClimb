@@ -1,6 +1,5 @@
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
-import {Component, ElementRef, OnInit} from "@angular/core";
-import {Subject} from "rxjs";
+import {Component, ElementRef, HostBinding, OnInit} from "@angular/core";
 import {MessagesService} from "./messages.service";
 
 const flyInOutKeyframes = [
@@ -48,18 +47,19 @@ const flyInOutKeyframes = [
 export class TopMessagesComponent implements OnInit {
     public messages: TopMessage[] = [];
 
+    @HostBinding('style.margin-left')
+    public marginLeft: string = '150px';
+
     private element: HTMLElement;
 
     constructor(private messagesService: MessagesService,
                 ele: ElementRef) {
         this.element = ele.nativeElement;
-        window['foo'] = (text): void => { //TODO remove
-            this.messagesService.topMessage.next([text || Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 2 + Math.random() * 3), null]);
-        };
     }
 
     ngOnInit(): void {
-        this.messagesService.topMessage.subscribe(([message, hideObservable]: [string, Subject<void>]) => {
+        this.messagesService.topMessage.subscribe(([message, hideObservable]) => {
+            this.marginLeft = document.getElementById('title').clientWidth + 'px';
             let messageObject = new TopMessage;
             messageObject.message = message;
             this.messages.unshift(messageObject);

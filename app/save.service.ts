@@ -78,7 +78,6 @@ export class SaveService {
         allResearches.forEach((research: Research): void => {
             research.isDone = finishedResearchIds.includes(research.id);
         });
-        console.log('loaded');
     }
 
     public replaceSave(state: string): void {

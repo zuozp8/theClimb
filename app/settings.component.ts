@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
+import {MessagesService} from "./messages.service";
+import {SaveService} from "./save.service";
 import {Settings} from "./settings";
 import {TimeTickService} from "./time-tick.service";
-import {SaveService} from "./save.service";
 
 @Component({
     templateUrl: '/app/settings.component.html',
@@ -9,6 +10,7 @@ import {SaveService} from "./save.service";
 export class SettingsComponent implements OnInit, OnDestroy {
     constructor(public settings: Settings,
                 public saveService: SaveService,
+                private messageService: MessagesService,
                 private timeTickService: TimeTickService) {
     }
 
@@ -39,7 +41,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         document.execCommand('copy');
         document.removeEventListener('copy', handler);
 
-        alert(copied ? 'Copied' : 'Failed');
+        this.messageService.topMessage.next([copied ? 'Copied to clipboard' : 'Copying failed', null]);
     }
 
     public loadSave(): void {
@@ -47,5 +49,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
         value = value.trim();
 
         this.saveService.replaceSave(value);
+        this.messageService.topMessage.next(['Loaded', null]);
     }
 }

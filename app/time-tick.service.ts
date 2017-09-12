@@ -12,7 +12,7 @@ export class TimeTickService {
 
     constructor(private settings: Settings) {
         const self = this;
-        this.intervalId = setInterval(() => {
+        this.intervalId = window.setInterval(() => {
             if (!self.active) {
                 return;
             }
