@@ -24,15 +24,15 @@ export class TimeTickService {
         }, 1000 * self.settings.tickInterval);
     }
 
+    public get active(): boolean {
+        return this.pauseDepth == 0;
+    }
+
     public pause(): void {
         this.pauseDepth++;
     }
 
     public unpause(): void {
         this.pauseDepth--;
-    }
-
-    public get active(): boolean {
-        return this.pauseDepth == 0;
     }
 }

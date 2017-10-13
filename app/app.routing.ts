@@ -1,8 +1,8 @@
 import {ModuleWithProviders} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {VillageComponent} from "./village.component";
 import {ResearchComponent} from "./research.component";
 import {SettingsComponent} from "./settings.component";
+import {VillageComponent} from "./village.component";
 
 const appRoutes: Routes = [
     {

@@ -1,35 +1,17 @@
 import {Injectable} from "@angular/core";
-import {VillageService} from "./village.service";
+import {allResearches, Research, ResearchId} from "./research";
+import {SaveService} from "./save.service";
+import {Savable} from "./saveable";
 import {TimeTickService} from "./time-tick.service";
 import {Village} from "./village";
-import {allResearches, Research, ResearchId} from "./research";
+import {VillageService} from "./village.service";
+
+type ResarchServiceSaveState = [ResearchId, number, ResearchId[]];
 
 @Injectable()
-export class ResearchService {
+export class ResearchService implements Savable<ResarchServiceSaveState> {
     currentProgress: number = 0;
     currentResearchId: ResearchId = null;
-
-    constructor(private villageService: VillageService,
-                timeTickService: TimeTickService) {
-        timeTickService.subscribers.push(this.onTick);
-    }
-
-    get currentResearch(): Research {
-        if (this.currentResearchId === null) {
-            return null;
-        }
-        return allResearches.get(this.currentResearchId);
-    }
-
-    startResearch(id: ResearchId): void {
-        this.currentResearchId = id;
-        this.currentProgress = 0;
-    }
-
-    isDone(id: ResearchId): boolean {
-        return allResearches.get(id).isDone;
-    }
-
     private onTick = (interval: number): void => {
         if (this.currentResearchId === null) {
             return;
@@ -41,6 +23,53 @@ export class ResearchService {
             this.currentResearchId = null;
         }
     };
+
+    constructor(private villageService: VillageService,
+                saveService: SaveService,
+                timeTickService: TimeTickService) {
+        timeTickService.subscribers.push(this.onTick);
+        saveService.subscribe(this);
+    }
+
+    get finishedResearchIds(): ResearchId[] { //TODO move maybe
+        let result: ResearchId[] = [];
+        allResearches.forEach((value: Research, key: ResearchId): void => {
+            if (value.isDone) {
+                result.push(key);
+            }
+        });
+        return result;
+    }
+
+    set finishedResearchIds(finishedResearchIds: ResearchId[]) {
+        allResearches.forEach((research: Research): void => {
+            research.isDone = finishedResearchIds.includes(research.id);
+        });
+    }
+
+    get currentResearch(): Research {
+        if (this.currentResearchId === null) {
+            return null;
+        }
+        return allResearches.get(this.currentResearchId);
+    }
+
+    getSaveData(): ResarchServiceSaveState {
+        return [this.currentResearchId, this.currentProgress, this.finishedResearchIds];
+    }
+
+    applySaveData(data: ResarchServiceSaveState): void {
+        [this.currentResearchId, this.currentProgress, this.finishedResearchIds] = data;
+    }
+
+    startResearch(id: ResearchId): void {
+        this.currentResearchId = id;
+        this.currentProgress = 0;
+    }
+
+    isDone(id: ResearchId): boolean {
+        return allResearches.get(id).isDone;
+    }
 
     public getResearchProduction(): number {
         let result = 0;

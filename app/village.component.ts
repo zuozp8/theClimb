@@ -1,23 +1,23 @@
 import {Component} from "@angular/core";
-import {Village} from "./village";
-import {ResourcesService} from "./resources.service";
-import {VillageService} from "./village.service";
-import {ResearchService} from "./research.service";
-import {ResearchId} from "./research";
 import {BreedingService} from "./breeding.service";
+import {ResearchId} from "./research";
+import {ResearchService} from "./research.service";
+import {ResourcesService} from "./resources.service";
+import {Village} from "./village";
+import {VillageService} from "./village.service";
 
 @Component({
     templateUrl: '/app/village.component.html'
 })
 export class VillageComponent {
+    minePrice: number = 50;
+    universityPrice: number = 50;
+
     constructor(private resourcesService: ResourcesService,
                 private researchService: ResearchService,
                 private villageService: VillageService,
                 public breedingService: BreedingService) {
     }
-
-    minePrice: number = 50;
-    universityPrice: number = 50;
 
     get buildingMineConstraint(): string | void {
         if (!this.village.freeWorker) {

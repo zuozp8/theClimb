@@ -4,6 +4,7 @@ export const enum ResearchId {
     Foo2,
     Expedition
 }
+
 // CampfireRituals
 //   Astrology
 //   Fertility

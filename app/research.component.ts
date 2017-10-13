@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {ResearchService} from "./research.service";
 import {allResearches, Research} from "./research";
+import {ResearchService} from "./research.service";
 
 @Component({
     templateUrl: '/app/research.component.html'

@@ -19,8 +19,7 @@ export class AppBaseComponent {
                 // Just initialize
                 breedingService: BreedingService,
                 storyEventService: StoryEventService,
-                timeTickService: TimeTickService,
-    ) {
+                timeTickService: TimeTickService,) {
         saveService.load();
         timeTickService.unpause();
     }

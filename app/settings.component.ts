@@ -14,20 +14,20 @@ export class SettingsComponent implements OnInit, OnDestroy {
                 private timeTickService: TimeTickService) {
     }
 
-    ngOnInit(): void {
-        this.timeTickService.unpause();
-    }
-
-    ngOnDestroy(): void {
-        this.timeTickService.pause();
-    }
-
     get availableTickIntervals(): number[] {
         return Settings.availableTickIntervals;
     }
 
     get availableSaveIntervals(): number[] {
         return Settings.availableSaveIntervals;
+    }
+
+    ngOnInit(): void {
+        this.timeTickService.unpause();
+    }
+
+    ngOnDestroy(): void {
+        this.timeTickService.pause();
     }
 
     public copySave(): void {

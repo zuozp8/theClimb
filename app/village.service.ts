@@ -1,24 +1,17 @@
 import {Injectable} from "@angular/core";
+import {SaveService} from "./save.service";
+import {Savable} from "./saveable";
 import {Village} from "./village";
 
 @Injectable()
-export class VillageService {
+export class VillageService implements Savable<Object[]> {
     public villages: Village[];
 
-    set villagesRaw(rawVillages: Object[]) {
-        this.villages = rawVillages.map((rawVillage: Object): Village => {
-            let village = new Village();
-            for (let prop in rawVillage) {
-                village[prop] = rawVillage[prop];
-            }
-            return village;
-        });
-    };
-
-    constructor() {
+    constructor(saveService: SaveService) {
         let village = new Village();
         village.freeWorker = 2;
         this.villages = [village];
+        saveService.subscribe(this);
     }
 
     get current(): Village {
@@ -41,5 +34,19 @@ export class VillageService {
             }
         }
         return false;
+    }
+
+    getSaveData(): Village[] {
+        return this.villages;
+    }
+
+    applySaveData(rawVillages: Object[]): void {
+        this.villages = rawVillages.map((rawVillage: Object): Village => {
+            let village = new Village();
+            for (let prop in rawVillage) {
+                village[prop] = rawVillage[prop];
+            }
+            return village;
+        });
     }
 }

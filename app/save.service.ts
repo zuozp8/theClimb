@@ -1,21 +1,15 @@
 import {Injectable} from "@angular/core";
-import {BreedingService} from "./breeding.service";
 import {MessagesService} from "./messages.service";
-import {allResearches, Research, ResearchId} from "./research";
-import {ResearchService} from "./research.service";
-import {ResourcesService} from "./resources.service";
+import {Savable} from "./saveable";
 import {Settings} from "./settings";
 import {TimeTickService} from "./time-tick.service";
-import {VillageService} from "./village.service";
 
 @Injectable()
 export class SaveService {
+    private savableServices: Savable<any>[] = [];
+    private version = 2;
 
-    constructor(private resourcesService: ResourcesService,
-                private researchService: ResearchService,
-                private villageService: VillageService,
-                private breedingService: BreedingService,
-                private timeTickService: TimeTickService,
+    constructor(private timeTickService: TimeTickService,
                 private messageService: MessagesService,
                 private settings: Settings) {
         timeTickService.subscribers.push((interval: number): void => {
@@ -23,6 +17,10 @@ export class SaveService {
                 this.save();
             }
         });
+    }
+
+    public subscribe(service: Savable<any>): void {
+        this.savableServices.push(service);
     }
 
     public save(): void {
@@ -37,47 +35,15 @@ export class SaveService {
         }
     }
 
-    private version = 1;
-
     public getStateString(): string {
-        return JSON.stringify([
-            this.version,
-            [this.resourcesService.essence, this.resourcesService.milk,],
-            [
-                this.researchService.currentResearchId,
-                this.researchService.currentProgress,
-                this.getFinishedResearchIds()
-            ],
-            this.villageService.villages,
-            this.breedingService.progress,
-            this.timeTickService.time,
-        ]);
-    }
-
-    private applyStateString(state: string): void {
-        let stateArray = JSON.parse(state);
-        let version = stateArray.shift();
-        if (version != this.version) {
-            throw new Error('Save from different version, not loaded');
+        let state = {
+            0: this.version,
+            'time': this.timeTickService.time // TODO making it savable would cause dependency-loop
+        };
+        for (let savable of this.savableServices) {
+            state[savable.constructor.name] = savable.getSaveData();
         }
-
-        let finishedResearchIds: ResearchId[];
-        [
-            [this.resourcesService.essence, this.resourcesService.milk,],
-            [
-                this.researchService.currentResearchId,
-                this.researchService.currentProgress,
-                finishedResearchIds
-            ],
-            this.villageService.villagesRaw,
-            this.breedingService.progress,
-            this.timeTickService.time,
-
-        ] = stateArray;
-
-        allResearches.forEach((research: Research): void => {
-            research.isDone = finishedResearchIds.includes(research.id);
-        });
+        return JSON.stringify(state);
     }
 
     public replaceSave(state: string): void {
@@ -90,14 +56,15 @@ export class SaveService {
         location.reload();
     }
 
-    private getFinishedResearchIds(): ResearchId[] {
-        //TODO move
-        let result: ResearchId[] = [];
-        allResearches.forEach((value: Research, key: ResearchId): void => {
-            if (value.isDone) {
-                result.push(key);
-            }
-        });
-        return result;
+    private applyStateString(stateString: string): void {
+        let state = JSON.parse(stateString);
+        if (state[0] != this.version) {
+            this.messageService.topMessage.next(['Save from different version, not loaded', null]);
+            return;
+        }
+        this.timeTickService.time = state['time'];
+        for (let savable of this.savableServices) {
+            savable.applySaveData(state[savable.constructor.name]);
+        }
     }
 }
