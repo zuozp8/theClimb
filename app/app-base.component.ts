@@ -1,10 +1,11 @@
 import {Component} from "@angular/core";
-import {ResourcesService} from "./resources.service";
-import {TimeTickService} from "./time-tick.service";
-import {ResearchService} from "./research.service";
-import {VillageService} from "./village.service";
 import {BreedingService} from "./breeding.service";
+import {ResearchService} from "./research.service";
+import {ResourcesService} from "./resources.service";
 import {SaveService} from "./save.service";
+import {StoryEventService} from "./story-event.service";
+import {TimeTickService} from "./time-tick.service";
+import {VillageService} from "./village.service";
 
 @Component({
     selector: 'app-base',
@@ -14,10 +15,11 @@ export class AppBaseComponent {
     constructor(public resourcesService: ResourcesService,
                 public researchService: ResearchService,
                 public villageService: VillageService,
-                public saveService: SaveService,
+                saveService: SaveService,
                 // Just initialize
                 breedingService: BreedingService,
-                timeTickService: TimeTickService
+                storyEventService: StoryEventService,
+                timeTickService: TimeTickService,
     ) {
         saveService.load();
         timeTickService.unpause();

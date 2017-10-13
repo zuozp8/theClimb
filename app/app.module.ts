@@ -14,6 +14,7 @@ import {ResourcesService} from "./resources.service";
 import {SaveService} from "./save.service";
 import {Settings} from "./settings";
 import {SettingsComponent} from "./settings.component";
+import {StoryEventService} from "./story-event.service";
 import {TimeTickService} from "./time-tick.service";
 import {TopMessagesComponent} from "./top-message.component";
 import {VillageComponent} from "./village.component";
@@ -40,6 +41,7 @@ import {VillageService} from "./village.service";
         MessagesService,
         ResearchService,
         ResourcesService,
+        StoryEventService,
         SaveService,
         Settings,
         TimeTickService,
