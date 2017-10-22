@@ -1,22 +1,24 @@
 import {Injectable} from "@angular/core";
 import {MessagesService} from "./messages.service";
-import {Savable} from "./saveable";
+import {Savable} from "./savable";
 import {Settings} from "./settings";
+import {Tickable} from "./Tickable";
 import {TimeTickService} from "./time-tick.service";
 
 @Injectable()
-export class SaveService {
+export class SaveService implements Tickable {
     private savableServices: Savable<any>[] = [];
     private version = 2;
 
     constructor(private timeTickService: TimeTickService,
                 private messageService: MessagesService,
                 private settings: Settings) {
-        timeTickService.subscribers.push((interval: number): void => {
-            if (timeTickService.time % this.settings.autoSaveInterval < interval) {
-                this.save();
-            }
-        });
+    }
+
+    onTick(interval: number, time: number): void {
+        if (time % this.settings.autoSaveInterval < interval) {
+            this.save();
+        }
     }
 
     public subscribe(service: Savable<any>): void {

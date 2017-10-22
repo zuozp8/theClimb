@@ -1,8 +1,6 @@
 import {Injectable} from "@angular/core";
 import {allResearches, Research, ResearchId} from "./research";
-import {SaveService} from "./save.service";
-import {Savable} from "./saveable";
-import {TimeTickService} from "./time-tick.service";
+import {Savable} from "./savable";
 import {Village} from "./village";
 import {VillageService} from "./village.service";
 
@@ -12,23 +10,8 @@ type ResarchServiceSaveState = [ResearchId, number, ResearchId[]];
 export class ResearchService implements Savable<ResarchServiceSaveState> {
     currentProgress: number = 0;
     currentResearchId: ResearchId = null;
-    private onTick = (interval: number): void => {
-        if (this.currentResearchId === null) {
-            return;
-        }
-        this.currentProgress += interval * this.getResearchProduction() / this.currentResearch.cost;
-        if (this.currentProgress > 1) {
-            this.currentResearch.isDone = true;
-            this.currentProgress = 0;
-            this.currentResearchId = null;
-        }
-    };
 
-    constructor(private villageService: VillageService,
-                saveService: SaveService,
-                timeTickService: TimeTickService) {
-        timeTickService.subscribers.push(this.onTick);
-        saveService.subscribe(this);
+    constructor(private villageService: VillageService) {
     }
 
     get finishedResearchIds(): ResearchId[] { //TODO move maybe
@@ -53,6 +36,18 @@ export class ResearchService implements Savable<ResarchServiceSaveState> {
         }
         return allResearches.get(this.currentResearchId);
     }
+
+    onTick(interval: number): void {
+        if (this.currentResearchId === null) {
+            return;
+        }
+        this.currentProgress += interval * this.getResearchProduction() / this.currentResearch.cost;
+        if (this.currentProgress > 1) {
+            this.currentResearch.isDone = true;
+            this.currentProgress = 0;
+            this.currentResearchId = null;
+        }
+    };
 
     getSaveData(): ResarchServiceSaveState {
         return [this.currentResearchId, this.currentProgress, this.finishedResearchIds];

@@ -1,25 +1,20 @@
 import {Injectable} from "@angular/core";
-import {SaveService} from "./save.service";
-import {Savable} from "./saveable";
-import {TimeTickService} from "./time-tick.service";
+import {Savable} from "./savable";
+import {Tickable} from "./Tickable";
 import {Village} from "./village";
 import {VillageService} from "./village.service";
 
 @Injectable()
-export class ResourcesService implements Savable<[number, number]> {
+export class ResourcesService implements Savable<[number, number]>, Tickable {
     essence: number = 100;
     milk: number = 0;
-    private onTick = (interval: number): void => {
+
+    constructor(private villageService: VillageService) {
+    }
+
+    onTick(interval: number): void {
         this.essence += interval * (this.getEssenceProduction() - this.getEssenceConsumption());
     };
-
-    constructor(private villageService: VillageService,
-                saveService: SaveService,
-                timeTickService: TimeTickService) {
-        timeTickService.subscribers.push(this.onTick);
-        saveService.subscribe(this);
-
-    }
 
     getSaveData(): [number, number] {
         return [this.essence, this.milk];

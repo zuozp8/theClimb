@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {Settings} from "./settings";
+import {Tickable} from "./Tickable";
 
 @Injectable()
 export class TimeTickService {
     pauseDepth: number = 1; // Game is unpaused after load
     time: number = 0;
 
-    subscribers: Array<(interval: number) => void> = [];
+    private tickableServices: Array<Tickable> = [];
 
     private intervalId: number;
 
@@ -18,10 +19,14 @@ export class TimeTickService {
             }
             self.time += this.settings.tickInterval;
 
-            for (let subscriber of self.subscribers) {
-                subscriber(self.settings.tickInterval);
+            for (let tickable of self.tickableServices) {
+                tickable.onTick(self.settings.tickInterval, this.time);
             }
         }, 1000 * self.settings.tickInterval);
+    }
+
+    public subscribe(service: Tickable): void {
+        this.tickableServices.push(service);
     }
 
     public get active(): boolean {

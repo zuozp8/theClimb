@@ -1,18 +1,21 @@
 import {Injectable, Injector} from "@angular/core";
-import {SaveService} from "./save.service";
-import {Savable} from "./saveable";
+import {Savable} from "./savable";
 import {StoryEvent} from "./story-event";
 import {StoryEventRepository} from "./story-event-repository";
-import {TimeTickService} from "./time-tick.service";
+import {Tickable} from "./Tickable";
 
 @Injectable()
-export class StoryEventService implements Savable<string[]> {
+export class StoryEventService implements Savable<string[]>, Tickable {
 
     private untriggered: Set<StoryEvent>;
 
     private currentEvent: StoryEvent;
 
-    private onTick = (): void => {
+    constructor(private injector: Injector) {
+        this.untriggered = new Set(StoryEventRepository.getAll());
+    }
+
+    onTick(): void {
         if (this.currentEvent) {
             console.log(`removing event ${this.currentEvent.id}`);
             this.currentEvent = null;//TODO remove
@@ -26,14 +29,6 @@ export class StoryEventService implements Savable<string[]> {
             }
         }
     };
-
-    constructor(timeTickService: TimeTickService,
-                saveService: SaveService,
-                private injector: Injector) {
-        timeTickService.subscribers.push(this.onTick);
-        this.untriggered = new Set(StoryEventRepository.getAll());
-        saveService.subscribe(this);
-    }
 
     getSaveData(): string[] {
         return [...this.untriggered].map((event: StoryEvent) => event.id);

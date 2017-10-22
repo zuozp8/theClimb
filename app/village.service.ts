@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
+import {Savable} from "./savable";
 import {SaveService} from "./save.service";
-import {Savable} from "./saveable";
 import {Village} from "./village";
 
 @Injectable()
