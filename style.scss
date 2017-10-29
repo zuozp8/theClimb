@@ -116,3 +116,25 @@ top-messagees {
     max-width: 0;
   }
 }
+
+event-message {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
+
+  > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80%; //TODO
+    padding: $modal-inner-padding;
+    border: $modal-content-border-width solid $modal-content-border-color;
+    background: $modal-content-bg;
+  }
+}

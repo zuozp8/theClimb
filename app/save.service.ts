@@ -55,7 +55,7 @@ export class SaveService implements Tickable {
 
     public resetSave(): void {
         localStorage.removeItem('saveData');
-        location.reload();
+        location.reload(); // TODO back to main page
     }
 
     private applyStateString(stateString: string): void {

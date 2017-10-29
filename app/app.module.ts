@@ -5,6 +5,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppBaseComponent} from "./app-base.component";
 import {routing} from "./app.routing";
 import {BreedingService} from "./breeding.service";
+import {EventMessageComponent} from "./event-message.component";
 import {FloorPipe} from "./floor.pipe";
 import {ItemComponent} from "./item.component";
 import {MessagesService} from "./messages.service";
@@ -48,6 +49,7 @@ let services = [
         ItemComponent,
         FloorPipe,
         TopMessagesComponent,
+        EventMessageComponent,
         SettingsComponent,
     ],
     providers: services,

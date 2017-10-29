@@ -1,0 +1,4 @@
+<div *ngIf="storyEventService.getCurrentEvent() as storyEvent">
+    <div [innerHtml]="storyEvent.content"></div>
+    <button (click)="storyEventService.currentEventAcknowledged()">OK</button>
+</div>

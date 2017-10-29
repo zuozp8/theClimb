@@ -1,5 +1,5 @@
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
-import {Component, ElementRef, HostBinding, OnInit} from "@angular/core";
+import {Component, HostBinding, OnInit} from "@angular/core";
 import {MessagesService} from "./messages.service";
 
 const flyInOutKeyframes = [
@@ -50,11 +50,7 @@ export class TopMessagesComponent implements OnInit {
     @HostBinding('style.margin-left')
     public marginLeft: string = '150px';
 
-    private element: HTMLElement;
-
-    constructor(private messagesService: MessagesService,
-                ele: ElementRef) {
-        this.element = ele.nativeElement;
+    constructor(private messagesService: MessagesService) {
     }
 
     ngOnInit(): void {

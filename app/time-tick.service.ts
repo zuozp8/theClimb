@@ -5,6 +5,7 @@ import {Tickable} from "./Tickable";
 @Injectable()
 export class TimeTickService {
     pauseDepth: number = 1; // Game is unpaused after load
+                            // TODO saving during pause
     time: number = 0;
 
     private tickableServices: Array<Tickable> = [];
