@@ -3,15 +3,13 @@ import {MessagesService} from "./messages.service";
 import {Savable} from "./savable";
 import {Settings} from "./settings";
 import {Tickable} from "./Tickable";
-import {TimeTickService} from "./time-tick.service";
 
 @Injectable()
 export class SaveService implements Tickable {
     private savableServices: Savable<any>[] = [];
-    private version = 2;
+    private version = 3;
 
-    constructor(private timeTickService: TimeTickService,
-                private messageService: MessagesService,
+    constructor(private messageService: MessagesService,
                 private settings: Settings) {
     }
 
@@ -40,7 +38,6 @@ export class SaveService implements Tickable {
     public getStateString(): string {
         let state = {
             0: this.version,
-            'time': this.timeTickService.time // TODO making it savable would cause dependency-loop
         };
         for (let savable of this.savableServices) {
             state[savable.constructor.name] = savable.getSaveData();
@@ -64,7 +61,6 @@ export class SaveService implements Tickable {
             this.messageService.topMessage.next(['Save from different version, not loaded', null]);
             return;
         }
-        this.timeTickService.time = state['time'];
         for (let savable of this.savableServices) {
             savable.applySaveData(state[savable.constructor.name]);
         }
